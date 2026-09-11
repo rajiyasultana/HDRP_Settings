@@ -3,27 +3,34 @@ using Studio23.SS2.SettingsManager.Data;
 using Studio23.SS2.SettingsManager.Utilities;
 using System.Linq;
 using UnityEngine;
+using System;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 
 namespace Studio23.SS2.SettingsManager.Video
 {
-	[RequireComponent(typeof(Toggle))]
+	//[RequireComponent(typeof(Toggle))]
 	public class AmbientOcclusionSettings : Settings
 	{
-		[SerializeField] private Toggle _uiItem;
+		//[SerializeField] private Toggle _uiItem;
 
 		[SerializeField] private bool _defaultVal = true;
 		private VolumeProfile _data;
 		private ScreenSpaceAmbientOcclusion _component;
+
+		public bool CurrentAmbientOcclusion => CurrentValue.ToBool();
+		public bool DefaultAmbientOcclusion => _defaultVal;
+
+		public event Action<bool> OnAmbientOcclusionChanged;
 
 		protected override void OnQualityChanged(QualityName qualityName)
 		{
 			var setting = VideoSettingsController.QualitySettingsPreset.FirstOrDefault(x => x.Names == qualityName);
 			if (setting != null)
 			{
-				_uiItem.isOn = setting.AmbientOcclusion; ;
+				//_uiItem.isOn = setting.AmbientOcclusion; 
+				SetAmbientOcclusion(setting.AmbientOcclusion);
 			}
 		}
 
@@ -36,26 +43,40 @@ namespace Studio23.SS2.SettingsManager.Video
 			Apply();
 		}
 
-		private void Start()
-		{
-			_uiItem.isOn = CurrentValue.ToBool();
-			_uiItem.onValueChanged.AddListener((value) =>
-			{
-				CurrentValue = value;
-				if (IsLive) Apply();
-			});
-		}
+		public void SetAmbientOcclusion(bool value)
+        {
+            CurrentValue = value;
+
+            if (IsLive)
+                Apply();
+
+            OnAmbientOcclusionChanged?.Invoke(CurrentAmbientOcclusion);
+        }
+
+		// private void Start()
+		// {
+		// 	_uiItem.isOn = CurrentValue.ToBool();
+		// 	_uiItem.onValueChanged.AddListener((value) =>
+		// 	{
+		// 		CurrentValue = value;
+		// 		if (IsLive) Apply();
+		// 	});
+		// }
 
 		public override void RestoreAction()
 		{
-			_uiItem.isOn = _defaultVal; // on change CurrentValue will be changed
+			//_uiItem.isOn = _defaultVal; // on change CurrentValue will be changed
 			base.Save();
 			if (!IsLive) Apply(); // if Live then already applied this
+
+			OnAmbientOcclusionChanged?.Invoke(CurrentAmbientOcclusion);
 		}
 		public override void ApplyAction()
 		{
 			base.Save();
 			if (!IsLive) Apply();  // if Live then already applied this
+
+			OnAmbientOcclusionChanged?.Invoke(CurrentAmbientOcclusion);
 		}
 
 		public void Apply()
