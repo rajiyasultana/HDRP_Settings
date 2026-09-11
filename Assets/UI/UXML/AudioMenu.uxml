@@ -1,0 +1,56 @@
+<ui:UXML
+    xmlns:ui="UnityEngine.UIElements"
+    editor-extension-mode="False">
+
+    <ui:VisualElement name="root" class="root">
+
+        <ui:Label
+            name="titleLabel"
+            text="AUDIO"
+            class="title" />
+
+        <ui:VisualElement
+            name="buttonContainer"
+            class="button-container">
+
+            <ui:Button
+                name="applyButton"
+                text="APPLY"
+                class="menu-button" />
+
+            <ui:Button
+                name="restoreButton"
+                text="RESTORE"
+                class="menu-button" />
+
+            <ui:Button
+                name="backButton"
+                text="BACK"
+                class="menu-button" />
+            
+            <ui:Slider
+                name="masterVolumeSlider"
+                label="MASTER VOLUME"
+                low-value="0"
+                high-value="1"
+                class="settings-slider" />
+
+            <ui:Slider
+                name="musicVolumeSlider"
+                label="MUSIC VOLUME"
+                low-value="0"
+                high-value="1"
+                class="settings-slider" />
+
+            <ui:Slider
+                name="sfxVolumeSlider"
+                label="SFX VOLUME"
+                low-value="0"
+                high-value="1"
+                class="settings-slider" />
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>

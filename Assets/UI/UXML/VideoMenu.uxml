@@ -1,0 +1,60 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="root" class="root" style="background-color: rgb(176, 176, 176);">
+        <ui:Label name="titleLabel" text="VIDEO" class="title"/>
+        <ui:VisualElement name="settingsContainer" class="settings-container">
+            <ui:VisualElement name="gameQualityRow" class="setting-row">
+                <ui:Label text="GAME QUALITY" class="setting-label"/>
+                <ui:EnumField name="gameQualityField" class="setting-control"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="textureQualityRow" class="setting-row">
+                <ui:Label text="TEXTURE QUALITY" class="setting-label"/>
+                <ui:EnumField name="textureQualityField" class="setting-control"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="shadowQualityRow" class="setting-row">
+                <ui:Label text="SHADOW QUALITY" class="setting-label"/>
+                <ui:EnumField name="shadowQualityField" class="setting-control"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="fullscreenRow" class="setting-row">
+                <ui:Label text="FULL SCREEN MODE" class="setting-label"/>
+                <ui:EnumField name="fullscreenModeField" class="setting-control"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="resolutionRow" class="setting-row">
+                <ui:Label text="SCREEN RESOLUTION" class="setting-label"/>
+                <ui:EnumField name="resolutionField" class="setting-control"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="fovRow" class="setting-row">
+                <ui:Label text="FOV" class="setting-label"/>
+            </ui:VisualElement>
+            <ui:Slider name="fovSlider" low-value="60" high-value="120" value="90" class="setting-slider"/>
+            <ui:VisualElement name="brightnessRow" class="setting-row">
+                <ui:Label text="BRIGHTNESS" class="setting-label"/>
+                <ui:Slider name="brightnessSlider" low-value="0" high-value="1" value="0.5" class="setting-slider"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="vsyncRow" class="setting-row">
+                <ui:Label text="VSYNC" class="setting-label"/>
+                <ui:Toggle name="vsyncToggle" class="setting-toggle"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="volumetricLightingRow" class="setting-row">
+                <ui:Label text="VOLUMETRIC LIGHTING" class="setting-label"/>
+                <ui:Toggle name="volumetricLightingToggle" class="setting-toggle"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="bloomRow" class="setting-row">
+                <ui:Label text="BLOOM" class="setting-label"/>
+                <ui:Toggle name="bloomToggle" class="setting-toggle"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="vignetteRow" class="setting-row">
+                <ui:Label text="VIGNETTE" class="setting-label"/>
+                <ui:Toggle name="vignetteToggle" class="setting-toggle"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="ambientOcclusionRow" class="setting-row">
+                <ui:Label text="AMBIENT OCCLUSION" class="setting-label"/>
+                <ui:Toggle name="ambientOcclusionToggle" class="setting-toggle"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="buttonContainer" class="button-container">
+            <ui:Button name="applyButton" text="APPLY" class="menu-button"/>
+            <ui:Button name="restoreButton" text="RESTORE" class="menu-button"/>
+            <ui:Button name="backButton" text="BACK" class="menu-button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
