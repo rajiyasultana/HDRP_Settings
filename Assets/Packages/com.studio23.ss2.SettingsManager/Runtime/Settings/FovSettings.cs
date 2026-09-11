@@ -1,4 +1,4 @@
-﻿using Cinemachine;
+﻿using Unity.Cinemachine;
 using Studio23.SS2.SettingsManager.Core;
 using Studio23.SS2.SettingsManager.Utilities;
 using TMPro;
@@ -15,11 +15,11 @@ namespace Studio23.SS2.SettingsManager.Video
 		[Range(0, 1)]
 		[SerializeField] private float _defaultVal = 0;
 		[SerializeField] private TMP_Text _label;
-		private CinemachineVirtualCamera _virtualCamera;
+		private CinemachineCamera _virtualCamera;
 
 		public override void Setup()
 		{
-			_virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+			_virtualCamera = FindObjectOfType<CinemachineCamera>();
 			base.Initialized(_defaultVal, GetType().Name, true);
 			Apply();
 		}
@@ -51,7 +51,7 @@ namespace Studio23.SS2.SettingsManager.Video
 
 		public void Apply()
 		{
-			_virtualCamera.m_Lens.FieldOfView = 60f + Mathf.Clamp01(CurrentValue.ToFloat()) * 60f;
+			_virtualCamera.Lens.FieldOfView = 60f + Mathf.Clamp01(CurrentValue.ToFloat()) * 60f;
 			// float : 0 - 1, 60-120
 		}
 	}
